@@ -1,5 +1,6 @@
 using Android.Bluetooth;
 using Java.Util;
+using System.Threading;
 
 namespace SyncMesh.Bluetooth.Server
 {
@@ -34,9 +35,9 @@ namespace SyncMesh.Bluetooth.Server
                 acceptThread.Start();
                 Android.Util.Log.Info("BluetoothServer", "Сервер запущен, ждём подключения...");
             }
-            catch (Exception ex)
+            catch 
             {
-                Android.Util.Log.Error("BluetoothServer", $"Ошибка: {ex.Message}");
+                Android.Util.Log.Error("BluetoothServer", $"Ошибка");
             }
         }
         private void AcceptLoop()
@@ -51,11 +52,11 @@ namespace SyncMesh.Bluetooth.Server
                         Android.Util.Log.Info("Bluetooth","Клиент подключился!");
                     }
                 }
-                catch (Exception ex)
+                catch 
                 {
                     if (isRunning)
                     {
-                        Android.Util.Log.Error("BluetoothServer", $"Ошибка Accept: {ex.Message}");
+                        Android.Util.Log.Error("BluetoothServer", $"Ошибка Accept");
                     }
                 }
             }
@@ -67,9 +68,9 @@ namespace SyncMesh.Bluetooth.Server
             {
                 serverSocket?.Close();
             }
-            catch (Exception ex)
+            catch 
             {
-                Android.Util.Log.Error("BluetoothServer", $"Ошибка остановки: {ex.Message}");
+                Android.Util.Log.Error("BluetoothServer", $"Ошибка остановки");
             }
         }
     }
